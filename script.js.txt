@@ -1,0 +1,137 @@
+/* =========================
+AYUSH DUBEY PORTFOLIO
+JAVASCRIPT
+========================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+```
+/* =========================
+   SCROLL REVEAL ANIMATION
+========================= */
+
+const sections = document.querySelectorAll(
+    ".section, .hero-content, .hero-terminal"
+);
+
+sections.forEach((section) => {
+    section.classList.add("reveal");
+});
+
+
+const observer = new IntersectionObserver(
+    (entries) => {
+        entries.forEach((entry) => {
+
+            if (entry.isIntersecting) {
+                entry.target.classList.add("active");
+            }
+
+        });
+    },
+    {
+        threshold: 0.15
+    }
+);
+
+
+sections.forEach((section) => {
+    observer.observe(section);
+});
+
+
+/* =========================
+   ACTIVE NAVIGATION
+========================= */
+
+const navLinks = document.querySelectorAll(".nav-links a");
+
+const pageSections = document.querySelectorAll(
+    "section[id]"
+);
+
+
+window.addEventListener("scroll", () => {
+
+    let currentSection = "";
+
+    pageSections.forEach((section) => {
+
+        const sectionTop =
+            section.offsetTop - 150;
+
+        const sectionHeight =
+            section.offsetHeight;
+
+        if (
+            window.scrollY >= sectionTop &&
+            window.scrollY <
+                sectionTop + sectionHeight
+        ) {
+            currentSection = section.getAttribute("id");
+        }
+
+    });
+
+
+    navLinks.forEach((link) => {
+
+        link.classList.remove("active-nav");
+
+        if (
+            link.getAttribute("href") ===
+            "#" + currentSection
+        ) {
+            link.classList.add("active-nav");
+        }
+
+    });
+
+});
+
+
+/* =========================
+   TERMINAL CURSOR EFFECT
+========================= */
+
+const cursor = document.querySelector(".cursor");
+
+if (cursor) {
+
+    setInterval(() => {
+
+        cursor.style.opacity =
+            cursor.style.opacity === "0"
+                ? "1"
+                : "0";
+
+    }, 550);
+
+}
+
+
+/* =========================
+   NAVBAR SHADOW ON SCROLL
+========================= */
+
+const navbar =
+    document.querySelector(".navbar");
+
+
+window.addEventListener("scroll", () => {
+
+    if (window.scrollY > 50) {
+
+        navbar.style.boxShadow =
+            "0 8px 30px rgba(0,0,0,0.35)";
+
+    } else {
+
+        navbar.style.boxShadow = "none";
+
+    }
+
+});
+```
+
+});
